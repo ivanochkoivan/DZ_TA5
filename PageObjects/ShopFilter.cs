@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -40,11 +41,12 @@ namespace DZ_TA5.PageObjects
         public void CheckPrice()
         {
             CloseAddvetizment();
+            int k = ListOfPrice.Count;
             foreach (IWebElement element in ListOfPrice)
             {
-                int temp = 0;
+                float temp = 0;
                 string tempString = element.Text;
-                int.TryParse(Filter(tempString), out temp);
+                float.TryParse(Filter(tempString), NumberStyles.Any, CultureInfo.InvariantCulture, out temp);
                 Console.WriteLine(temp);
                 Assert.IsTrue(temp>MinPrice);
             }

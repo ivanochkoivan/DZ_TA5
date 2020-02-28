@@ -71,57 +71,39 @@ namespace DZ_TA5.PageObjects
             passwoedInput.SendKeys(password);
             passwoedInput.SendKeys(Keys.Enter);
             driver.SwitchTo().DefaultContent();
+            CloseAddvetizment();
             linkTelephone.Click();
             CloseAddvetizment();
             ListOfPrice = listOfPrice;
         }
+        //Отфильтровует пробелы, запятые и макисмальную цену от минимальной
         protected override string Filter(string NumInString)
         {
-            string digit = "0123456789,-";
+            string digit = "0123456789";
             string result = "";
             for (int i = 0; i < NumInString.Length; i++)
             {
                 for (int j = 0; j < digit.Length; j++)
                 {
-
-                    if ((NumInString[i] == digit[j]) & (Convert.ToString(NumInString[i]) == ","))
+                    if (Convert.ToString(NumInString[i]) == "-")
+                    { 
+                        i = NumInString.Length; 
+                        break;
+                    }
+                    if (Convert.ToString(NumInString[i]) == ",")
                     {
                         result += ".";
+                        break;
                     }
-                    else
+                    if (NumInString[i] == digit[j]) 
                     {
-                        if (Convert.ToString(NumInString[i]) == "-")
-                        {
-                            i = NumInString.Length;
-                            break;
-                        }
-                        else
-                        {
-                            if (NumInString[i] == digit[j])
-                            {
-                                result += NumInString[i];
-                            }
-                        }
-                    }
-
+                        result += NumInString[i];
+                    }   
                     
                 }
             }
             
             return result;
-        }
-        //Существует ли данный символ в строке
-        private bool ExistSymbol(string str)
-        {
-            try
-            {
-                int i = str.IndexOf("-");
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
         }
     }
 }

@@ -28,5 +28,43 @@ namespace DZ_TA5
             google.FillSearchInput();
             google.FindConsist();
         }
+        public void SearchInYahoo()
+        {
+            Yahoo yahoo = new Yahoo(driver);
+            yahoo.GoToUrl();
+            yahoo.FillSearchInput();
+            yahoo.FindConsist();
+        }
+        public void SearchInBing()
+        {
+            Bing bing = new Bing(driver);
+            bing.GoToUrl();
+            bing.FillSearchInput();
+            bing.FindConsist();
+        }
+
+        public void Screenshot()
+        {
+            Wikipedia wiki = new Wikipedia(driver);
+            wiki.GoToUrl();
+            wiki.MakeScreenshootContentImage();
+        }
+
+        public void FilterTestAli()
+        {
+            AliExpress ali = new AliExpress(driver);
+            ali.GoToUrl();
+            ali.LogIn();
+            ali.SetPrice();
+            ali.CheckPrice();
+        }
+
+        public void FilterTestRozetka()
+        {
+            Rozetka roz = new Rozetka(driver);
+            roz.GoToUrl();
+            roz.SetPrice();
+            roz.CheckPrice();
+        }
     }
 }

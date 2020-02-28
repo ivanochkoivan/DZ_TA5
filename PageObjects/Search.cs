@@ -38,7 +38,6 @@ namespace DZ_TA5.PageObjects
                     if (item.Text.Contains(Const.companyName))
                     {
                         Const.MakeScreenShot(driver, "C:\\temp\\", $"result{i}.png");
-                        int numPage = i;
                         i = 9;
                         break;
                     }
@@ -52,7 +51,6 @@ namespace DZ_TA5.PageObjects
                 {
                     NextPage.Click();
                 }
-                //listOfTitles.Clear();
                 iterator = 0;
             }
         }

@@ -7,6 +7,7 @@ using DZ_TA5.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace DZ_TA5
 {
@@ -17,10 +18,8 @@ namespace DZ_TA5
         public void Rozetka1()
         {
             IWebDriver driver = new ChromeDriver();
-            var rozetka = new Rozetka(driver);
-            rozetka.GoToUrl();
-            rozetka.SetPrice();
-            rozetka.CheckPrice();
+            BLL rozetka = new BLL(driver);
+            rozetka.FilterTestRozetka();
         }
 
 
@@ -36,40 +35,32 @@ namespace DZ_TA5
         public void Bing()
         {
             IWebDriver driver = new ChromeDriver();
-            Bing bing = new Bing(driver);
-            bing.GoToUrl();
-            bing.FillSearchInput();
-            bing.FindConsist();
+            BLL bing = new BLL(driver);
+            bing.SearchInBing();
         }
 
         [Test]
         public void Yahoo()
         {
             IWebDriver driver = new ChromeDriver();
-            Yahoo yahoo = new Yahoo(driver);
-            yahoo.GoToUrl();
-            yahoo.FillSearchInput();
-            yahoo.FindConsist();
+            BLL yahoo = new BLL(driver);
+            yahoo.SearchInYahoo();
         }
 
         [Test]
         public void Wiki()
         {
             IWebDriver driver = new ChromeDriver();
-            Wikipedia wiki = new Wikipedia(driver);
-            wiki.GoToUrl();
-            wiki.MakeScreenshootContentImage();
+            BLL wiki = new BLL(driver);
+            wiki.Screenshot();
         }
 
         [Test]
         public void AliExpress()
         {
             IWebDriver driver = new ChromeDriver();
-            AliExpress ali = new AliExpress(driver);
-            ali.GoToUrl();
-            ali.LogIn();
-            ali.SetPrice();
-            ali.CheckPrice();
+            BLL ali = new BLL(driver);
+            ali.FilterTestAli();
         }
     }
 }
